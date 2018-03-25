@@ -106,4 +106,27 @@ public class PassengerMap {
 		}
 	}
 	
+    public boolean isEmpty() 
+    {
+	    	if (passenger.size() == 0) {
+	    		return true;
+	    	}
+	    	else {
+	    		return false;
+	    	}
+    }
+    
+    public Passenger getFirst() {
+    		String id = String.valueOf(passenger.keySet().toArray()[0]);
+    		if (id != null)
+    			return passenger.get(id);
+    		else
+    			return null;
+    }
+    
+    public void removeOne(Passenger p) {
+    		String id = p.getBookingCode();
+    		passenger.remove(id);
+    }
+	
 }

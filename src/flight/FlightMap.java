@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import passengers.Passenger;
+
 /**
  * @author rsureen
  * This class is responsible for storing data in HashMap
@@ -95,4 +97,27 @@ public class FlightMap {
 			System.out.println();
 		}
 	}
+	
+    public boolean isEmpty() 
+    {
+	    	if (flight.size() == 0) {
+	    		return true;
+	    	}
+	    	else {
+	    		return false;
+	    	}
+    }
+    
+    public Flight getFlight(String code) {
+		String id = code;
+		if (id != null)
+			return flight.get(id);
+		else
+			return null;
+    }
+
+    public void removeOne(String code) {
+//		String id = f.getFlightCode();
+		flight.remove(code);
+    }
 }
