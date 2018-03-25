@@ -32,7 +32,7 @@ public class CheckInMain implements Observer {
 		for (int i=0; i<numberOfDesks; i++) {
 			Desk d = desks.get(i);
 			String output = d.getNextDestination().getLogReportDetailString();
-			System.out.println(output);
+			System.out.println("output: "+output);
 			//w.clearWorker();
 
 		}

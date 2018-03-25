@@ -56,13 +56,13 @@ public class PassengerMap {
 			String lastName = parts[2];
 			Name name = new Name(firstName, lastName);			
 			String dest = parts[3];
-			String checkedIn = parts[4];
-			int totalWgt = Integer.parseInt(parts[5]);
-			int length = Integer.parseInt(parts[6]);
-			int breadth = Integer.parseInt(parts[7]);
-			int height = Integer.parseInt(parts[8]);
+			int totalWgt = Integer.parseInt(parts[4]);
+			int length = Integer.parseInt(parts[5]);
+			int breadth = Integer.parseInt(parts[6]);
+			int height = Integer.parseInt(parts[7]);
+			String fee = u.calcfee(length, breadth, height, totalWgt);
 			String fcode = u.getFCode(FlightMap.getFlight(), dest);
-			Passenger p = new Passenger(fcode, dest, bCode, name, totalWgt, length, breadth, height, checkedIn);
+			Passenger p = new Passenger(fcode, dest, bCode, name, totalWgt, length, breadth, height, fee);
 			this.addPassengerToMap(p);
 		}
 		catch(NumberFormatException nfe) {
@@ -82,7 +82,7 @@ public class PassengerMap {
 	 * @return boolean
 	 * Function adds Passenger object to passenger HashMap
 	 */
-	private boolean addPassengerToMap(Passenger p) {
+	public boolean addPassengerToMap(Passenger p) {
 		String id = p.getBookingCode();
 		boolean inMap = passenger.containsKey(id);
 		if(inMap == false) {
@@ -117,11 +117,9 @@ public class PassengerMap {
     }
     
     public Passenger getFirst() {
-    		String id = String.valueOf(passenger.keySet().toArray()[0]);
-    		if (id != null)
-    			return passenger.get(id);
-    		else
-    			return null;
+    		Map.Entry<String,Passenger> entry = passenger.entrySet().iterator().next();
+    		Passenger p = entry.getValue();
+    		return p;
     }
     
     public void removeOne(Passenger p) {

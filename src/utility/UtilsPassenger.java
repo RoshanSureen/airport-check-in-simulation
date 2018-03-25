@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import flight.*;
+import passengers.Passenger;
 
 public class UtilsPassenger {
 	private HashMap<String, Flight> flight;
@@ -105,5 +106,40 @@ public class UtilsPassenger {
 			}
 		}
 		return fCode;
+	}
+	
+	public String calcfee(int length, int breadth, int hgt, int totWgt) {
+		String fee = "";
+		int len = length;
+		int brd = breadth;
+		int height = hgt;
+		int bagWeight = totWgt;
+		
+		if (len <=90 && brd  <=65 && height <=75)
+		{
+			if (bagWeight < 30 || bagWeight == 30)
+			{
+				fee = "No charge";
+			}
+			else if (bagWeight > 30 && bagWeight <= 35)
+			{
+				fee = "AED 300";
+			}
+			else if (bagWeight > 35 && bagWeight <= 40)
+			{
+				fee = "AED 550";
+			}
+			else 
+			{
+				fee = "Invalid";
+			}
+		}
+		else 
+		{
+			fee = "Invalid";
+		}
+		
+		return fee;
+		
 	}
 }

@@ -6,6 +6,7 @@ import java.util.Observable;
 
 import checkInStand.CheckInMain;
 import flight.*;
+import utility.*;
 
 
 public class Desk extends Observable implements Runnable {
@@ -66,8 +67,8 @@ public class Desk extends Observable implements Runnable {
 
 
 	public void run() {
-		
-		System.out.print("D" + this.deskID + " Started." + System.lineSeparator());
+		System.out.print("\n");
+		System.out.print("DESK-" + this.deskID + " Started." + System.lineSeparator());
 
 		while (!manager.checkQueueEmpty()) {
 			
@@ -78,21 +79,35 @@ public class Desk extends Observable implements Runnable {
 			catch (Exception e) {
 				System.out.print("Worker thread exception" + e.getStackTrace());
 			}
-
+			
 			nextPassenger = manager.sendNextPassenger();
-			nextFlight = manager.getNextFlight(nextPassenger);
+			System.out.println("DESK-" + this.deskID + " Processing Passenger: "+ nextPassenger.getOwner().getNameInitials() + System.lineSeparator());
+//			nextFlight = manager.getNextFlight(nextPassenger);		
+//			
+//			nextDestination = new Destination (nextFlight, nextPassenger, deskID);
+//			
+//			String report = nextDestination.getLogReportDetailString();
+//			System.out.println(report);
 			
-			nextDestination = new Destination (nextFlight, nextPassenger, deskID);
-			
-			String report = nextDestination.getLogReportDetailString();
-			System.out.println(report);
+			String fee = nextPassenger.getfee();
+			if (fee.equals("Invalid")) {
+				String bookingID = nextPassenger.getBookingCode();
+				System.out.println("Passenger "+ bookingID + " Not allowed to Check-in");
+			} else {
+				nextFlight = manager.getNextFlight(nextPassenger);		
+				
+				nextDestination = new Destination (nextFlight, nextPassenger, deskID);
+				
+				String report = nextDestination.getLogReportDetailString();
+				System.out.println(report);
+			}
 			
 			notifyObservers();
-
+			System.out.println("DESK-" + this.deskID + " is open." + System.lineSeparator());
 			
 		}
 		
-		System.out.println("Desk" + this.deskID +  " has Finished");
+		System.out.println("DESK-" + this.deskID +  " has Finished");
 	}
 	
 }

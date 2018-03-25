@@ -35,13 +35,15 @@ public class Destination {
 	}
 	
 	public String getLogReportDetailString() {
-		String record = String.format("%-4s", "D" + deskID);
+		String record = String.format("%-8s", "DESK-" + deskID);
 		record += String.format("%-13s", "Destination: ");
-		record += String.format("%-25s", this.getP().getDestination());
-		record += String.format("%-11s", "Passenger Name: ");
-		record += String.format("%-5s", this.getP().getOwner().getFullName() );
-		record += String.format("%-6s", "Flight: ");
-		record += String.format("%-6s", this.getF().getFlightCode());
+		record += String.format("%-14s", this.getP().getDestination());
+		record += String.format("%-16s", "Passenger Name: ");
+		record += String.format("%-18s", this.getP().getOwner().getFullName() );
+		record += String.format("%-8s", "Flight: ");
+		record += String.format("%-8s", this.getF().getFlightCode());
+		record += String.format("%-12s", "Bagage Fee: ");
+		record += String.format("%-12s", this.getP().getfee());
 		
 		return record;
 	}

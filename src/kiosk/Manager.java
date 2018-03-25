@@ -26,8 +26,6 @@ public class Manager implements Runnable {
 	public void loadUpData() {
 		flightQueue.processFlightFile("Flight.csv");
 		psgQueue.processPassengerFile("Passenger.csv");
-//		flightQueue.outputFlightResults();
-//		psgQueue.outputPassengerResults();
 		
 	}
 	
@@ -45,7 +43,7 @@ public class Manager implements Runnable {
 	}
 	
 	public boolean checkQueueEmpty() {
-		if (flightQueue.isEmpty() == true || psgQueue.isEmpty() == true) {
+		if (psgQueue.isEmpty() == true) {
 			return true;
 		}
 		else {
@@ -56,9 +54,7 @@ public class Manager implements Runnable {
 	public synchronized Flight getNextFlight(Passenger p) {
 		this.p = p;
 		String flightCode = p.getFlightCode();
-//		System.out.println(flightCode);
 		Flight f = flightQueue.getFlight(flightCode);
-//		flightQueue.removeOne(flightCode);
 		return f;
 	}
 	

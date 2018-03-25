@@ -12,10 +12,10 @@ public class Passenger {
 	private int length;
 	private int breadth;
 	private int height;
-	private String checkedIn;
+	private String fee;
 	private UtilsPassenger u;
 	
-	public Passenger(String fCode, String dest, String bCode, Name name, int totWgt, int len, int brd, int hgt, String checkIn) {
+	public Passenger(String fCode, String dest, String bCode, Name name, int totWgt, int len, int brd, int hgt, String fee) {
 		u = new UtilsPassenger();
 		this.flightCode = fCode;
 		this.destination = dest;
@@ -25,7 +25,7 @@ public class Passenger {
 		this.length = len;
 		this.breadth = brd;
 		this.height = hgt;
-		this.checkedIn = checkIn;
+		this.fee = fee;
 	}
 
 	public void checkAndSetBCode(String bookingCode, Name name) {
@@ -96,14 +96,14 @@ public class Passenger {
 
 	public void setHeight(int height) {
 		this.height = height;
-	}	
+	}
 	
-	public String getCheckedIn() {
-		return checkedIn;
+	public String getfee() {
+		return fee;
 	}
 
-	public void setCheckedIn(String checkedIn) {
-		this.checkedIn = checkedIn;
+	public void setFee(String fee) {
+		this.fee = fee;
 	}
 	
 	/**
